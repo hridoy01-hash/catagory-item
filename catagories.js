@@ -1,7 +1,6 @@
 (async function () {
     const BUSINESS_ID = "6304aa113cb8eba9248eac8d";
     const LoadDataFunction = async (url) => { try { let response = await fetch(url, { method: "get", headers: { "businessid": `${BUSINESS_ID}`, } }); response = await response.json(); if (response.Error) { return console.log(response.Error) }; return response; } catch (e) { return }; };
-    // let FeatureImage = `https://www.soppiya.com/media/images/${BUSINESS_ID}/item/${singleItem?._id}/${singleItem?.image}`;
 
     // display top catagories
     const getTopCatagories = await LoadDataFunction(`https://api.soppiya.com/v2.1/widget/home/items?limit=5`);
@@ -21,7 +20,14 @@
             setAttributes(productImage, { "src": `${FeatureImage}` });
             s0906_product_img.appendChild(productImage);
 
-            const s0906_product_content = elementMaker("")
+            const s0906_product_content = elementMaker("div", ["s0906_product_content"]);
+            s0906_single_product.appendChild(s0906_product_content);
+            const s0906_product_name_wrapper = elementMaker("div", ["s0906_product_name_wrapper"]);
+            s0906_product_content.appendChild(s0906_product_name_wrapper);
+            const s0906_product_name = elementMaker("span", ["s0906_product_name"]);
+            s0906_product_name.textContent = `${element.name}`
+            s0906_product_name_wrapper.appendChild(s0906_product_name);
+
 
 
 
